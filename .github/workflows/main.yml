@@ -31,7 +31,7 @@ jobs:
 
       - name: Zip output
         run: |
-          zip -qq -y -r "${{ github.event.repository.name }}-${{ env.NOW }}.zip" custom cfg README.md
+          zip -qq -y -r "${{ github.event.repository.name }}.zip" custom cfg README.md
         working-directory: ${{ env.SCRIPTS_PATH }}
 
       - name: List files in the directory
@@ -39,7 +39,7 @@ jobs:
         working-directory: ${{ env.SCRIPTS_PATH }}
 
       - name: List files in the zip
-        run: unzip -l ${{ github.event.repository.name }}-${{ env.NOW }}.zip
+        run: unzip -l ${{ github.event.repository.name }}.zip
         working-directory: ${{ env.SCRIPTS_PATH }}
 
       - name: Create Release
@@ -49,7 +49,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.NOW }}
-          artifacts: "${{ github.event.repository.name }}-${{ env.NOW }}.zip"
+          artifacts: "${{ github.event.repository.name }}.zip"
           draft: false
           allowUpdates: true
           prerelease: false
