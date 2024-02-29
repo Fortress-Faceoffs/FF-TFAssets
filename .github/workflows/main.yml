@@ -23,6 +23,7 @@ jobs:
         run: |
             wget -q -O tmp.zip https://github.com/agrastiOs/Ultimate-TF2-Visual-Fix-Pack/archive/refs/heads/master.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/Ultimate-TF2-Visual-Fix-Pack-master/TF2UltimateVisualFix/ custom/ && rm -f tmp.zip && rm -rf mktemp/
             wget -q -O tmp.zip https://github.com/CriticalFlaw/essentialsHUD/archive/refs/heads/fortress-faceoff.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/essentialsHUD-fortress-faceoff/ custom/ && rm -f tmp.zip && rm -rf mktemp/
+            wget -q -O tmp.zip https://github.com/dalegaard/CastingEssentials/releases/latest/download/CastingEssentialsRed.zip && unzip -oq tmp.zip -d custom/ && rm -f tmp.zip
 
 
       - name: Install zip
