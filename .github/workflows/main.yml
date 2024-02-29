@@ -1,0 +1,57 @@
+name: Compile and release
+
+on:
+  push:
+    branches:
+      main
+workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set environment variables
+        run: echo SCRIPTS_PATH=$(pwd) >> $GITHUB_ENV && echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Download dependencies and additional plugins
+        working-directory: ${{ env.SCRIPTS_PATH }}/custom
+          run: |
+            wget -q -O tmp.zip https://github.com/agrastiOs/Ultimate-TF2-Visual-Fix-Pack/archive/refs/heads/master.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/Ultimate-TF2-Visual-Fix-Pack-master/TF2UltimateVisualFix/ custom/ && rm -f tmp.zip && rm -rf mktemp/
+            wget -q -O tmp.zip https://github.com/CriticalFlaw/essentialsHUD/archive/refs/heads/fortress-faceoff.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/essentialsHUD-fortress-faceoff/ custom/ && rm -f tmp.zip && rm -rf mktemp/
+            wget -q -O tmp.zip https://github.com/dalegaard/CastingEssentials/releases/latest/download/CastingEssentialsRed.zip && unzip -o tmp.zip -d custom/ && rm -f tmp.zip
+
+
+      - name: Install zip
+        uses: montudor/action-zip@v1
+
+      - name: Zip output
+        run: |
+          zip -qq -y -r "${{ github.event.repository.name }}-${{ env.NOW }}.zip" -x ".git*" custom cfg README.md
+        working-directory: ${{ env.SCRIPTS_PATH }}
+
+      - name: List files in the directory
+        run: ls -R
+        working-directory: ${{ env.SCRIPTS_PATH }}
+
+      - name: List files in the zip
+        run: unzip -l ${{ github.event.repository.name }}-${{ steps.setup_sp.outputs.plugin-version }}.zip
+        working-directory: ${{ env.SCRIPTS_PATH }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.14
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.NOW }}
+          artifacts: "${{ github.event.repository.name }}-${{ env.NOW }}.zip"
+          draft: false
+          allowUpdates: true
+          prerelease: false
+          generateReleaseNotes: true
+          replacesArtifacts: true
