@@ -21,10 +21,8 @@ jobs:
       - name: Download dependencies and additional plugins
         working-directory: ${{ env.SCRIPTS_PATH }}/custom
         run: |
-            sudo apt-get update && sudo apt-get install -y p7zip-full jq
             wget -q -O tmp.zip https://github.com/agrastiOs/Ultimate-TF2-Visual-Fix-Pack/archive/refs/heads/master.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/Ultimate-TF2-Visual-Fix-Pack-master/TF2UltimateVisualFix/ custom/ && rm -f tmp.zip && rm -rf mktemp/
             wget -q -O tmp.zip https://github.com/CriticalFlaw/essentialsHUD/archive/refs/heads/fortress-faceoff.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/essentialsHUD-fortress-faceoff/ custom/ && rm -f tmp.zip && rm -rf mktemp/
-            wget -q -O tmp.zip https://github.com/dalegaard/CastingEssentials/releases/latest/download/CastingEssentialsRed.zip && unzip -o tmp.zip -d custom/ && for file in *\\*; do target="${file//\\//}"; mkdir -p "${target%/*}"; mv -v "$file" "$target"; done && rm -f tmp.zip
 
 
       - name: Install zip
