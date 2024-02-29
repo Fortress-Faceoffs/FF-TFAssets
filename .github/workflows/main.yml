@@ -20,7 +20,7 @@ jobs:
 
       - name: Download dependencies and additional plugins
         working-directory: ${{ env.SCRIPTS_PATH }}/custom
-          run: |
+        run: |
             wget -q -O tmp.zip https://github.com/agrastiOs/Ultimate-TF2-Visual-Fix-Pack/archive/refs/heads/master.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/Ultimate-TF2-Visual-Fix-Pack-master/TF2UltimateVisualFix/ custom/ && rm -f tmp.zip && rm -rf mktemp/
             wget -q -O tmp.zip https://github.com/CriticalFlaw/essentialsHUD/archive/refs/heads/fortress-faceoff.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/essentialsHUD-fortress-faceoff/ custom/ && rm -f tmp.zip && rm -rf mktemp/
             wget -q -O tmp.zip https://github.com/dalegaard/CastingEssentials/releases/latest/download/CastingEssentialsRed.zip && unzip -o tmp.zip -d custom/ && rm -f tmp.zip
@@ -39,7 +39,7 @@ jobs:
         working-directory: ${{ env.SCRIPTS_PATH }}
 
       - name: List files in the zip
-        run: unzip -l ${{ github.event.repository.name }}-${{ steps.setup_sp.outputs.plugin-version }}.zip
+        run: unzip -l ${{ github.event.repository.name }}-${{ env.NOW }}.zip
         working-directory: ${{ env.SCRIPTS_PATH }}
 
       - name: Create Release
