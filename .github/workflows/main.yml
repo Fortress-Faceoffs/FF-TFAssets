@@ -30,7 +30,7 @@ jobs:
 
       - name: Zip output
         run: |
-          zip -qq -y -r "${{ github.event.repository.name }}-${{ env.NOW }}.zip" -x ".git*" custom cfg "README.md"
+          zip -qq -y -r "${{ github.event.repository.name }}-${{ env.NOW }}.zip" custom cfg README.md
         working-directory: ${{ env.SCRIPTS_PATH }}
 
       - name: List files in the directory
