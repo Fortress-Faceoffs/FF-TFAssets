@@ -27,7 +27,7 @@ jobs:
             wget -q -O tmp.zip https://github.com/dalegaard/CastingEssentials/releases/latest/download/CastingEssentialsRed.zip && CMD_INSTRUCTIONS=$(7z l -ba -slt "tmp.zip" | grep '\\' | sed 's/^Path = //g' | sed 's/.*/"&"/' | gawk '{ print $0, gensub(/\\/, "/", "g", $0); }' | sed 's|\\|\\\\|g' | paste -s -) && CMD_7Z="7z rn \"tmp.zip\" $CMD_INSTRUCTIONS" && eval "$CMD_7Z" && unzip -o tmp.zip -d ./ && rm -f tmp.zip
             
       - name: Rename Readme
-        working-directory: ${{ env.SCRIPTS_PATH }}/custom
+        working-directory: ${{ env.SCRIPTS_PATH }}
         run: |
             mv README.md readme.txt
 
