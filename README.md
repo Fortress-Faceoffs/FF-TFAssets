@@ -1,5 +1,5 @@
 # FF-TFAssets
- Assets to use in `custom` when streaming
+ Assets to use in TF2 when streaming
 
 REPLACING MEANS DELETING/MOVING THE OLD FOLDER AND MOVING IN THE NEW FOLDER, NOT OVERWRITING.
 Move `custom` to the `tf` folder, overwriting the existing `custom` folder. If you already had mods in there, replace the folder with the new one instead, backup your old `custom` folder if needed.
