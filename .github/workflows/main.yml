@@ -23,8 +23,8 @@ jobs:
         run: |
             sudo apt-get update && sudo apt-get install -y p7zip-full jq  # Install `p7zip-full` and `jq`
             wget -q -O tmp.zip https://github.com/agrastiOs/Ultimate-TF2-Visual-Fix-Pack/archive/refs/heads/master.zip && unzip -o tmp.zip -d mktemp/ && mv mktemp/Ultimate-TF2-Visual-Fix-Pack-master/TF2UltimateVisualFix/ ./ && rm -f tmp.zip && rm -rf mktemp/
+            wget -q -O tmp.zip https://github.com/dalegaard/CastingEssentials/releases/latest/download/CastingEssentialsRed.zip && CMD_INSTRUCTIONS=$(7z l -ba -slt "tmp.zip" | grep '\\' | sed 's/^Path = //g' | sed 's/.*/"&"/' | gawk '{ print $0, gensub(/\\/, "/", "g", $0); }' | sed 's|\\|\\\\|g' | paste -s -) && CMD_7Z="7z rn \"tmp.zip\" $CMD_INSTRUCTIONS" && eval "$CMD_7Z" && unzip -o tmp.zip -d ./ && rm -rf CastingEssentialsRed/resource && rm -f tmp.zip
             wget -q -O tmp.zip https://github.com/CriticalFlaw/essentialsHUD/archive/refs/heads/fortress-faceoff.zip && unzip -o tmp.zip -d mktemp/ && rm -f mktemp/essentialsHUD-fortress-faceoff/resource/clientscheme.res && rsync -a --no-perms mktemp/essentialsHUD-fortress-faceoff/ essentialsHUD-fortress-faceoff/ && rm -f tmp.zip && rm -rf mktemp/
-            wget -q -O tmp.zip https://github.com/dalegaard/CastingEssentials/releases/latest/download/CastingEssentialsRed.zip && CMD_INSTRUCTIONS=$(7z l -ba -slt "tmp.zip" | grep '\\' | sed 's/^Path = //g' | sed 's/.*/"&"/' | gawk '{ print $0, gensub(/\\/, "/", "g", $0); }' | sed 's|\\|\\\\|g' | paste -s -) && CMD_7Z="7z rn \"tmp.zip\" $CMD_INSTRUCTIONS" && eval "$CMD_7Z" && unzip -o tmp.zip -d ./ && rm -f tmp.zip
   
       - name: Rename Readme
         working-directory: ${{ env.SCRIPTS_PATH }}
