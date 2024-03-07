@@ -1,7 +1,0 @@
-//DebugTextureView
-UnlitGeneric
-{
-	$basetexture    _rt_FullFrameFB
-	$ShowAlpha      1
-	$translucent    1
-}
