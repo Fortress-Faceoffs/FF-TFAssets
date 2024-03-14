@@ -22,12 +22,12 @@ Scheme
 		//---------------------------------------------
 		"HealthBuff"				"58 225 25 255"
 		"HealthLow"					"223 142 0 255"
-		"BlueTeam"					"41 145 235 255"
+		"BlueTeam"					"41 146 235 255"
 		"RedTeam"					"254 95 83 255"
-		"BlueTeamLight"				"188 230 253 255"
-		"RedTeamLight"				"254 194 100 255"
-		"BlueTeamDark"				"10 60 194 255"
-		"RedTeamDark"				"255 44 44 255"
+		"BlueTeamLight"				"51 178 248 255"
+		"RedTeamLight"				"255 118 103 255"
+		"BlueTeamDark"				"33 117 211 255"
+		"RedTeamDark"				"251 76 67 255"
 		
 		// base colors
 		"Orange"			"178 82 22 255"
